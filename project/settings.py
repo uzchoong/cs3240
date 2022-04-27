@@ -34,7 +34,7 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER='a18.django.email@gmail.com'
-EMAIL_HOST_PASSWORD='wdvdzjatvmjbtuof'
+EMAIL_HOST_PASSWORD=
 RECIPIENT_ADDRESS='a18.django.email@gmail.com'
 
 # CELERY SETTINGS 
@@ -92,13 +92,13 @@ MEDIA_URL = "/media/"
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f6-r(803!q!#k5)8$7ww!ayoo=jx#_sq!^^_57qd4y3&19!9nh'
+SECRET_KEY = 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # SHERRIFF: Added both the local host and herokuapp.com here to handled the DisallowedHost error.
-ALLOWED_HOSTS = ['localhost','127.0.0.1','project-a-18-organizer.herokuapp.com']
+ALLOWED_HOSTS =
 
 
 # Application definition
@@ -164,8 +164,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 
+#         'NAME': 
 #     }
 # }
 
@@ -175,14 +175,14 @@ if 'test' in sys.argv:
     # test database
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'dejldlaja8q8te',
-            'USER': 'jyifidcixffiln',
-            'PASSWORD': '1d0d47986e3fab2e959a4cc66b36e20c9b05238f77b3dba41ec686ca59c074c0',
-            'HOST': 'ec2-18-207-72-235.compute-1.amazonaws.com',
-            'PORT': '5432',
+            'ENGINE': 
+            'NAME': 
+            'USER': 
+            'PASSWORD':
+            'HOST': 
+            'PORT': 
             'TEST': {
-                'NAME': 'dejldlaja8q8te',
+                'NAME':
             }
         }
     }
@@ -190,12 +190,12 @@ else:
     # default database
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'd54vtqjtjlc4kk',
-            'USER': 'rideqdwbyhjosd',
-            'PASSWORD': '5c14bdff82f7f5d3555ae9aec8ab35d7604874db19261e5d57e76ca4077a9712',
-            'HOST': 'ec2-44-193-150-214.compute-1.amazonaws.com',
-            'PORT': '5432',
+            'ENGINE': 
+            'NAME': 
+            'USER': 
+            'PASSWORD': 
+            'HOST': 
+            'PORT': 
         }
     }
 
@@ -294,23 +294,23 @@ SOCIALACCOUNT_PROVIDERS = {
 # RE-INCREMENT the SITE_ID to what it was when you pushed it (no further pushes/commits should be necessary)
 # push changes to GitHub MAIN BRANCH
 # OAuth, everything should work now
-SITE_ID = 25
+SITE_ID = 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 #https://www.section.io/engineering-education/how-to-upload-files-to-aws-s3-using-django-rest-framework/
 #https://aws.amazon.com/s3/getting-started/
-AWS_ACCESS_KEY_ID = 'AKIAWGN3XIVBPUJESSLJ'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'neworganizer-a18'  # using us-west-1 server
-AWS_S3_FILE_OVERWRITE = False
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = 
+AWS_SECRET_ACCESS_KEY = 
+AWS_STORAGE_BUCKET_NAME = 
+AWS_S3_FILE_OVERWRITE = 
+DEFAULT_FILE_STORAGE = 
 
 #https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html
 S3_USE_SIGV4 = True
 
-# AWS_STORAGE_BUCKET_NAME = 'a18-organizer-new'  # using us-east-2 server
-# AWS_S3_REGION_NAME = 'us-east-2'
-# AWS_S3_SIGNATURE_VERSION = 's3v4'
-# AWS_S3_ADDRESSING_STYLE = 'virtual'
+# AWS_STORAGE_BUCKET_NAME = 
+# AWS_S3_REGION_NAME = 
+# AWS_S3_SIGNATURE_VERSION = 
+# AWS_S3_ADDRESSING_STYLE = 
 # AWS_DEFAULT_ACL = 'private'
