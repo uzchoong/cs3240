@@ -1,0 +1,9 @@
+body {
+  background-image: url("images/rotunda.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+/* image blurred on https://www.befunky.com/features/blur-image/ */

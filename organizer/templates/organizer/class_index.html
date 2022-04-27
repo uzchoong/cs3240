@@ -1,0 +1,271 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="{% static 'organizer/style.css' %}">
+
+<style type="text/css">
+   h2 {
+        text-align:center;
+        background-color: white;
+   }
+   fieldset {
+        height: 100%;
+        padding: 15px;
+        background-color:#e3f2fd;
+   }
+
+   .card {
+        float: left;
+        color: blue;
+        background-color: #FFC55C;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 195;
+        overflow-y: auto;
+   }
+   .flex-wrapper {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+     justify-content: space-between;
+     margin-bottom: 10px;
+   }
+   /* 
+  nav bar 
+  https://getbootstrap.com/docs/4.0/components/navbar/ 
+  transparent
+  https://mdbootstrap.com/docs/standard/navigation/navbar/
+  footer
+  https://codepen.io/mdbootstrap/pen/YEPERj?editors=1000 
+  background image
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Backgrounds_and_Borders/Resizing_background_images
+  rotunda image
+  https://www.rbiva.com/project/university-of-virginia-rotunda/
+  */ 
+
+
+
+</style>
+
+
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+  <div class="container-fluid">
+    <a class="navbar-brand" href={% url 'home' %}>Hoos Organized</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Classes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarPolls">
+            <li><a class="dropdown-item" href={% url 'organizer:class-home' %}>Class Dashboard</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:class-index' %}>Class Index</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:class-create' %}>Create a Class</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Calendar & To Dos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarPolls">
+            <li><a class="dropdown-item" href={% url 'organizer:calendar' %}>Calendar</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:todo-list' %}>To Do List</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:todo' %}>Create a To Do</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Notes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarPolls">
+            <li><a class="dropdown-item" href={% url 'organizer:note-home' %}>My Notes</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:note-all' %}>All Notes</a></li>
+            <li><a class="dropdown-item" href={% url 'organizer:note-upload' %}>Upload Notes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Settings
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarPolls">
+            <li><a class="dropdown-item" href={% url 'edit-profile' user.profile.id %}>Edit Profile</a></li>
+            <li><a class="dropdown-item" href={% url 'logout' %}>Log Out</a></li>
+          </ul>
+        </li>
+
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="flex-wrapper">
+<body>
+    <section class="h-100">
+        <header class="container h-70">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                    <h2 style="background-color:#008CBA; border-radius:6px"><a style="color:white">Class Index</a></h2>
+                    <fieldset style="border-radius:6px">
+                        <form style="margin-bottom:0.5cm"method="GET">
+                            {{ filter.form }}
+                        <button style="background-color:#008CBA;" type="submit" class="btn btn-primary">Search</button>
+
+                        </form>
+                        <div class="float-left">
+                            {% for class in filter.qs %}
+                                <div class="col md-3">
+                                    <div class="col-sm">
+                                        <div class="card" style="width: 230px;">
+                                            <div class="card-body">
+                                                <button style="border-radius:8px"><a href={% url 'organizer:class-detail' class.id %}>{{ class.name }}</a></button>
+                                                <br><br>
+                                                <p style="color:blue" class="card-text"><b>Course ID: {{ class.code }} {{ class.courseNumber }}</b></p>
+                                                <p class="card-text">Professor: {{ class.professor }}</p>
+                                                <p class="card-text">Credits: {{ class.credits }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </header>
+    </section>
+</body>
+</div>
+
+<body>
+
+<footer>
+    <div class="footer-clean">
+        <footer style="background-color:#e9d8f2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    
+                    <div class="container">
+                            <div class="row">
+
+                                <!--First column-->
+                                <div class="col-md-4">
+                                    <h5 class="title mb-4 mt-3 font-bold">A-18</h5>
+                                    <p>Choong-Hyun Kim | Jade Burns | Julian Lee | Palash Shah | Sarah Gould</p>
+                                </div>
+                                <!--/.First column-->
+
+                                <hr class="clearfix w-100 d-md-none">
+
+                                <!--Second column-->
+                                <div class="col-md-2 mx-auto">
+                                    <h5 class="title mb-4 mt-3 font-bold">Classes</h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href={% url 'organizer:class-home' %}>Class Dashboard</a></li>
+                                        <li><a href={% url 'organizer:class-index' %}>Class Index</a></li>
+                                        <li><a href={% url 'organizer:class-create' %}>Create a Class</a></li>
+                                    </ul>
+                                </div>
+                                <!--/.Second column-->
+
+                                <hr class="clearfix w-100 d-md-none">
+
+                                <!--Third column-->
+                                <div class="col-md-2 mx-auto">
+                                    <h5 class="title mb-4 mt-3 font-bold">Calendar & To Dos</h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href={% url 'organizer:calendar' %}>Calendar</a></li>
+                                        <li><a href={% url 'organizer:todo-list' %}>To Do List</a></li>
+                                        <li><a href={% url 'organizer:todo' %}>Create a To Do</a></li>
+                                    </ul>
+                                </div>
+                                <!--/.Third column-->
+
+                                <hr class="clearfix w-100 d-md-none">
+
+                                <!--Fourth column-->
+                                <div class="col-md-2 mx-auto">
+                                    <h5 class="title mb-4 mt-3 font-bold ">Notes</h5>
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href={% url 'organizer:note-home' %}> My Notes</li>
+                                          <li><a href={% url 'organizer:note-all' %}> All Notes</li>
+                                        <li><a href={% url 'organizer:note-upload' %}>Upload Notes</li>
+                                    </ul>
+                                </div>
+                                <!--/.Fourth column-->
+                            </div>
+                          </div>
+              
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</footer>
+
+{% else %}
+<body>
+  <section class="h-100">
+  <header class="container h-20">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="d-flex flex-column">
+        <div class ="header">
+          <h1 style="color:#ff8c00">Hoos Organized</h1>
+        </div>
+          <a style="background-color:orange" href="{% provider_login_url 'google' %}">Login With Google</a>
+      </div>
+    </div>
+
+</div>
+</header>
+</section>
+</body>
+
+
+  <style>
+    h1 {
+        text-align: center;
+        background-color: white;
+        padding: 6px;
+        font-family:'Cursive', lucida handwriting;
+        font-size: +40;
+    }
+    a:link {
+      font-family:'Cursive', lucida handwriting;
+      color: #ff8c00;
+      text-align: center;
+      background-color: white;
+      text-decoration: none;
+      font-size: +20;
+    }
+    a:hover {
+      font-family:'Cursive', lucida handwriting;
+      color: #ff8c00;
+      text-align: center;
+      background-color: white;
+      text-decoration: none;
+      font-size: +20;
+    }
+  </style>
+
+{% endif %}
+
+</html>
