@@ -15,9 +15,6 @@ from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 import os
 
-os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAWGN3XIVBPUJESSLJ'
-os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
-os.environ['AWS_STORAGE_BUCKET_NAME'] = 'neworganizer-a18'
 #from django_celery_beat.models import PeriodicTask, CrontabSchedule
 import json
 import boto3
