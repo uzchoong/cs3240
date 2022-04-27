@@ -1,0 +1,31 @@
+# Django is needed to run Django
+Django
+
+# gunicorn is needed by Heroku to launch the web server
+gunicorn
+
+# django-heroku is ONLY needed by Heroku for their internal process
+# if you have errors with psycopg2 or django-heroku, use the code at the bottom of settings.py to avoid the error
+# the outcome of using this bypass is that locally you will need to use either SQLite or connect to Heroku's Postgres DB
+django-heroku
+django-allauth
+django-bootstrap-v5
+psycopg2-binary
+
+#for aws
+boto3
+django-storages
+django-environ
+celery
+redis
+django-celery-results
+#django-celery-beat
+django-filter
+
+# deprecated - no support for Django >=2.1
+#django-datetime-widget
+#django-utils-six
+
+django-datetime-widget2
+
+holidays
